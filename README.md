@@ -26,7 +26,7 @@ We adopt the MATLAB implementation from **RiemannianCovDs** and adapt it to our 
    ```bash
    python extract_spd_feature.py
 
-### 🌀 Optical Flow Feature Extraction
+### 2. Optical Flow Feature Extraction
 
 We further extract **Optical Flow Histogram (OFH)** features to capture temporal motion information from the video sequences.
 
@@ -37,11 +37,10 @@ The core implementation is located at:
 #### Instructions
 Run the following script to produce the second type of feature representation:
 
-```bash
-python feature_extract_object/OpticalFlow.py
----
+   ```bash
+   python feature_extract_object/OpticalFlow.py
 
-## Training and Evaluation
+## ⚙️ Training and Evaluation
 
 After extracting both SPD and OFH features, you can train and evaluate the model using:
 
