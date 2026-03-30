@@ -1,41 +1,46 @@
-Dataset Download
+Hand Gesture Recognition Project
+This document provides instructions for downloading datasets, extracting features, and training the model for hand gesture recognition.
 
+1. Dataset Download
 The datasets used in this work are publicly available from the official repository:
 
-Hand Gesture Recognition Dataset Repository
+Hand Gesture Recognition Dataset Repository (Please insert the actual URL here)
 
-This repository provides detailed download instructions and dataset access links.
-
-In this work, we use the following two datasets:
+This repository provides detailed download instructions and dataset access links. In this work, we use the following two datasets:
 
 Cambridge Hand Gesture Dataset
-Northwestern University Hand Gesture Dataset
-Feature Extraction
-1. SPD Feature Extraction
 
+Northwestern University Hand Gesture Dataset
+
+2. Feature Extraction
+SPD Feature Extraction
 We adopt the MATLAB implementation from RiemannianCovDs and adapt it to our dataset structure to compute local Symmetric Positive Definite (SPD) covariance matrices.
 
-After code adaptation, run:
+Steps:
 
+Adapt the code to your local directory structure.
+
+Run the following command to generate SPD feature representations:
+
+Bash
 python extract_spd_feature.py
+Optical Flow Feature Extraction
+We further extract Optical Flow Histogram (OFH) features to capture temporal movement.
 
-to generate SPD feature representations.
+Implementation path: feature_extract_object/OpticalFlow.py
 
-2. Optical Flow Feature Extraction
+Steps:
 
-We further extract Optical Flow Histogram (OFH) features.
+Run the script to produce the second type of feature representation:
 
-The implementation is located at:
+Bash
+python feature_extract_object/OpticalFlow.py
+3. Training and Evaluation
+After successfully extracting both SPD and OFH features, you can proceed to train and evaluate the model.
 
-feature_extract_object/OpticalFlow.py
+Execution:
 
-Running this script will produce the second type of feature representation.
-
-Training and Evaluation
-
-After extracting both SPD and OFH features, you can train and evaluate the model using:
-
+Bash
 python main.py
-Acknowledgements
-
-We sincerely thank the authors of RiemannianCovDs for providing the original implementation, which we used as the basis for SPD feature extraction.
+4. Acknowledgements
+We sincerely thank the authors of RiemannianCovDs for providing the original implementation, which served as the basis for our SPD feature extraction.
