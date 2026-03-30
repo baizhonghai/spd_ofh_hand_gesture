@@ -1,46 +1,48 @@
-Hand Gesture Recognition Project
+# Hand Gesture Recognition Project
+
 This document provides instructions for downloading datasets, extracting features, and training the model for hand gesture recognition.
 
-1. Dataset Download
-The datasets used in this work are publicly available from the official repository:
+---
 
-Hand Gesture Recognition Dataset Repository (Please insert the actual URL here)
+## 📂 Dataset Download
+
+The datasets used in this work are publicly available from the official repository:
+- **[Hand Gesture Recognition Dataset Repository](https://github.com/example-link)** *(Please replace with the actual link)*
 
 This repository provides detailed download instructions and dataset access links. In this work, we use the following two datasets:
+1. **Cambridge Hand Gesture Dataset**
+2. **Northwestern University Hand Gesture Dataset**
 
-Cambridge Hand Gesture Dataset
+---
 
-Northwestern University Hand Gesture Dataset
+## ⚙️ Feature Extraction
 
-2. Feature Extraction
-SPD Feature Extraction
-We adopt the MATLAB implementation from RiemannianCovDs and adapt it to our dataset structure to compute local Symmetric Positive Definite (SPD) covariance matrices.
+### 1. SPD Feature Extraction
+We adopt the MATLAB implementation from **RiemannianCovDs** and adapt it to our dataset structure to compute local **Symmetric Positive Definite (SPD)** covariance matrices.
 
-Steps:
+**Instructions:**
+1. Adapt the code to your local directory structure.
+2. Run the following command to generate SPD feature representations:
+   ```bash
+   python extract_spd_feature.py
 
-Adapt the code to your local directory structure.
+### 🌀 Optical Flow Feature Extraction
 
-Run the following command to generate SPD feature representations:
+We further extract **Optical Flow Histogram (OFH)** features to capture temporal motion information from the video sequences.
 
-Bash
-python extract_spd_feature.py
-Optical Flow Feature Extraction
-We further extract Optical Flow Histogram (OFH) features to capture temporal movement.
+#### Implementation Details
+The core implementation is located at:
+`feature_extract_object/OpticalFlow.py`
 
-Implementation path: feature_extract_object/OpticalFlow.py
+#### Instructions
+Run the following script to produce the second type of feature representation:
 
-Steps:
-
-Run the script to produce the second type of feature representation:
-
-Bash
+```bash
 python feature_extract_object/OpticalFlow.py
-3. Training and Evaluation
-After successfully extracting both SPD and OFH features, you can proceed to train and evaluate the model.
+---
 
-Execution:
+## Training and Evaluation
 
-Bash
-python main.py
-4. Acknowledgements
-We sincerely thank the authors of RiemannianCovDs for providing the original implementation, which served as the basis for our SPD feature extraction.
+After extracting both SPD and OFH features, you can train and evaluate the model using:
+
+`python main.py`
