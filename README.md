@@ -1,15 +1,37 @@
-Note:
-This implementation is not guaranteed to be plug-and-play.
-Minor modifications may be required depending on local environments.
+Dataset Download
 
-SPD Feature Matrix Extraction
+The datasets used in this work can be obtained from the official repository:
 
-The SPD (Symmetric Positive Definite) matrix extraction code used in this project is based on the following open-source repository:
+https://github.com/Ha0Tang/HandGestureRecognition
 
-https://github.com/chenchkx/RiemannianCovDs
+This repository provides download instructions and access links for the datasets.
 
-We would like to acknowledge and thank the authors of the original work for their contribution.
+In this work, we only use the following two datasets:
 
-If you encounter any issues while running the code, or need technical support, please feel free to contact:
+Cambridge Hand Gesture Dataset
+Northwestern University Hand Gesture Dataset
 
-📧 baizhonghai126@gmail.com
+Feature Extraction
+1. SPD Feature Extraction
+
+We follow the MATLAB implementation provided in RiemannianCovDs and adapt it to our dataset structure in order to compute local SPD matrices.
+
+After adaptation, run:
+
+python extract_spd_feature.py
+
+to generate SPD features.
+
+2. Optical Flow Feature Extraction
+
+We further extract optical flow histogram (OFH) features using:
+
+feature_extract_object/OpticalFlow.py
+
+This step produces the second type of feature representation.
+
+Training and Evaluation
+
+After obtaining both SPD features and OFH features, you can run the main pipeline:
+
+python main.py
