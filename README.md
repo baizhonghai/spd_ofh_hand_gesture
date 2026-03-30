@@ -7,7 +7,7 @@ This document provides instructions for downloading datasets, extracting feature
 ## 📂 Dataset Download
 
 The datasets used in this work are publicly available from the official repository:
-- **Hand Gesture Recognition Dataset Repository (https://github.com/example-link)** *(Please replace with the actual link)*
+- **Hand Gesture Recognition Dataset Repository https://github.com/Ha0Tang/HandGestureRecognition
 
 This repository provides detailed download instructions and dataset access links. In this work, we use the following two datasets:
 1. Cambridge Hand Gesture Dataset
@@ -19,7 +19,7 @@ This repository provides detailed download instructions and dataset access links
 
 ### 1. SPD Feature Extraction
 
-We adopt the MATLAB implementation from RiemannianCovDs and adapt it to our dataset structure to compute local Symmetric Positive Definite (SPD) covariance matrices.
+We adopt the MATLAB implementation from RiemannianCovDs（https://github.com/chenchkx/RiemannianCovDs.git） and adapt it to our dataset structure to compute local Symmetric Positive Definite (SPD) covariance matrices.
 
 Instructions:
 1. Adapt the code to your local directory structure.
