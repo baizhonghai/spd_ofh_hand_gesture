@@ -1,0 +1,19 @@
+True Label: 07, Predicted Label: 10
+True Label: 07, Predicted Label: 06
+True Label: 06, Predicted Label: 09
+True Label: 09, Predicted Label: 07
+True Label: 06, Predicted Label: 07
+True Label: 04, Predicted Label: 06
+True Label: 07, Predicted Label: 03
+True Label: 10, Predicted Label: 08
+True Label: 01, Predicted Label: 03
+True Label: 10, Predicted Label: 09
+True Label: 06, Predicted Label: 07
+True Label: 07, Predicted Label: 06
+True Label: 07, Predicted Label: 09
+True Label: 06, Predicted Label: 05
+True Label: 06, Predicted Label: 09
+True Label: 08, Predicted Label: 07
+True Label: 04, Predicted Label: 03
+True Label: 08, Predicted Label: 10
+

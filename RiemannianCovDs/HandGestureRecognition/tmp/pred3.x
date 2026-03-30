@@ -1,0 +1,34 @@
+Wrong Predictions:
+True Label: 0707_Index_01, Predicted Label: 09
+True Label: 0606_Thumb_03, Predicted Label: 09
+True Label: 0808_Thumb_04, Predicted Label: 10
+True Label: 0808_SideHand_05, Predicted Label: 04
+True Label: 1010_Thumb_14, Predicted Label: 03
+True Label: 0707_Fist_07, Predicted Label: 09
+True Label: 0404_Hand_04, Predicted Label: 03
+True Label: 0505_Thumb_13, Predicted Label: 10
+True Label: 0404_SideIndex_05, Predicted Label: 08
+True Label: 0505_SideHand_07, Predicted Label: 03
+True Label: 0303_Index_07, Predicted Label: 01
+True Label: 0404_Hand_07, Predicted Label: 03
+True Label: 0404_Hold_11, Predicted Label: 02
+True Label: 0303_SideIndex_05, Predicted Label: 10
+True Label: 0606_SideHand_15, Predicted Label: 03
+True Label: 0606_Index_12, Predicted Label: 09
+True Label: 0606_SideIndex_06, Predicted Label: 07
+True Label: 0606_Fist_02, Predicted Label: 07
+True Label: 0303_Hold_10, Predicted Label: 01
+True Label: 0101_SideIndex_08, Predicted Label: 06
+True Label: 0808_Thumb_08, Predicted Label: 10
+True Label: 0404_Thumb_01, Predicted Label: 03
+True Label: 0707_SideIndex_13, Predicted Label: 09
+True Label: 0909_Hand_05, Predicted Label: 06
+True Label: 0101_SideIndex_07, Predicted Label: 03
+True Label: 0404_Thumb_07, Predicted Label: 02
+True Label: 0909_SideIndex_08, Predicted Label: 07
+True Label: 0707_SideHand_06, Predicted Label: 09
+True Label: 0505_SideIndex_07, Predicted Label: 04
+True Label: 0606_SideHand_07, Predicted Label: 03
+True Label: 0707_SideHand_07, Predicted Label: 03
+True Label: 0606_SideHand_12, Predicted Label: 09
+
