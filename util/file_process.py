@@ -1,6 +1,26 @@
 import os
+import re
+
 import numpy as np
 import cv2
+
+
+def read_videos_to_dict(directory_path, tmp=False):
+    file_dict = {}
+    for filename in sorted(os.listdir(directory_path)):
+        filepath = os.path.join(directory_path, filename)
+        if os.path.isdir(filepath):
+            label = filename
+            video_list = []
+            for video_name in sorted(os.listdir(filepath)):
+                video_list.append(os.path.join(directory_path, filepath, video_name))
+            file_dict[label] = video_list
+    if tmp:
+        tmp_dict = {}
+        tmp_dict['01'] = file_dict['01']
+        tmp_dict['02'] = file_dict['02']
+        return tmp_dict
+    return file_dict
 
 
 def read_files_to_list(directory_path):
@@ -43,64 +63,18 @@ def calculate_slide_window(x, y, x_num, y_num):
         x_start = 0
     return windows_matrix
 
-# todo, 需要对比看下原来matlab代码是不是这么写的，没实现resize，对比的时候一并看下增加上
-def preprocess_dataset(dataset_dict, resize_x, resize_y, test=True):
-    preprocessed_dataset_dict = {}
-    for label, _ in dataset_dict.items():
-        preprocessed_dataset_dict[label] = []
-        for image_set in dataset_dict[label]:
-            image_list = []
-            for image_path in image_set:
-                image = cv2.imread(image_path)
-                gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-                image_list.append(gray_image)
-            preprocessed_dataset_dict[label].append(image_list)
-        if test:
-            return preprocessed_dataset_dict
-    return preprocessed_dataset_dict
 
 
-def read_matlab_files(directory_path):
-    file_dict = {}
-    for filename in sorted(os.listdir(directory_path)):
-        filepath = os.path.join(directory_path, filename)
-        if os.path.isdir(filepath):
-            label = filename
-            for sub_filename in sorted(os.listdir(filepath)):
-                sub_filepath = os.path.join(filepath, sub_filename)
-                if os.path.isdir(sub_filepath):
-                    file_list = []
-                    for finalfile in sorted(os.listdir(sub_filepath)):
-                        finalfile_path = os.path.join(sub_filepath, finalfile)
-                        if os.path.isfile(finalfile_path):
-                            file_list.append(finalfile_path)
-                    if label in file_dict:
-                        file_dict[label].append(file_list)
-                    else:
-                        file_dict[label] = []
-                        file_dict[label].append(file_list)
-    return file_dict
 
 
-def read_matlab_files_tmp(directory_path):
-    file_dict = {}
-    for filename in os.listdir(directory_path):
-        filepath = os.path.join(directory_path, filename)
-        if os.path.isdir(filepath):
-            label = filename
-            for sub_filename in os.listdir(filepath):
-                sub_filepath = os.path.join(filepath, sub_filename)
-                if os.path.isdir(sub_filepath):
-                    file_list = []
-                    for finalfile in os.listdir(sub_filepath):
-                        finalfile_path = os.path.join(sub_filepath, finalfile)
-                        if os.path.isfile(finalfile_path):
-                            file_list.append(finalfile_path)
-                    if label in file_dict:
-                        file_dict[label].append(file_list)
-                    else:
-                        file_dict[label] = []
-                        file_dict[label].append(file_list)
-    return file_dict
+
+def build_target_directory(video_path, basic_path):
+    parts = video_path.split('/')
+    #basic_path = '/Users/xxxx/TP/HandGestureRecognition/datasets/Northwestern_Hand_Gesture_Gray_key_frames12/'
+    directory = basic_path + parts[7] + '/' + parts[8].split('.')[0] + '/'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    return directory
+
 if __name__ == '__main__':
     dataset_dict = read_files_to_list('../datasets/ETH-80')

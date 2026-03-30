@@ -1,35 +1,30 @@
-from util.file_process import read_files_to_list, calculate_slide_window, preprocess_dataset
-from util.gaussian_calculate import calculate_gaussian_embedding_for_dataset,calculate_gaussian_embedding_for_gaussian_model
+from util.param_load import config
+from util.random_util import read_random_list
+from util.analyze_util import print_mean_std, show_confusion_matrix_colorful
+from util.train_util import generate_standard_train_test_data, train_predict
+from accepted_preprocess import generate_feature_label_info
 
-
-def print_hi(name):
-    # 在下面的代码行中使用断点来调试脚本。
-    print(f'Hi, {name}')  # 按 ⌘F8 切换断点。
-
-
-# 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    # 读文件就先简单的到读到dict_list里边就好了
-    dataset_dict = read_files_to_list('./datasets/ETH-80')
 
-    # 图片预处理，返回图片数据集
-    preprocessed_dataset = preprocess_dataset(dataset_dict, resize_x=256, resize_y=256)
+    # step 1 数据库选择从配置中读取，根据选择的数据库从另一个函数中返回特征
+    dataset = config['common_settings']['data_set']
+    feature_type = config['common_settings']['feature_type']
+    test_size = float(config['common_settings']['test_size'])
+    iteration = int(config['common_settings']['iteration'])
+    feature_X, label_y, instance_name_list = generate_feature_label_info(feature_type, dataset)
+    # step 2.拿到特征进行特征处理，而后进行分类
+    random_state_list = [43] if iteration == 1 else read_random_list()
+    accuracy_list = []
 
-    # 每个元素而言，用滑动窗口切割成小块。
-    window_matrix = calculate_slide_window(x=256, y=256, x_num=9, y_num=9)
-    # 对每一类别下的元素进行解读
-    gaussian_dict = calculate_gaussian_embedding_for_dataset(preprocessed_dataset, window_matrix)
-
-    # 计算高斯模型之间的协方差。
-    spd_dict = calculate_gaussian_embedding_for_gaussian_model(gaussian_dict)
-    # 再次构造高斯嵌入。
-    '''到此得到了80个SPD矩阵进行分类'''
-
-    # 尝试1，直接用log Euclidean 转换成Euclidean域内的东西然后进行bestk or pca降为分类，
-    # 尝试2，再找个滑动窗口的尺寸，而后构造第二个SPD矩阵组，将1&2的结果融合后bestk. 这里可以增加窗口的尺寸数量，至多4个吧。
-    # 尝试3，将SPD矩阵丢到SPDNet中去处理。
-    # 尝试4，将多尺寸的SPD组合成一个大的矩阵，丢到SPDNet处理。
-    # 尝试5，调整SPDNet并行处理这些不同维度的SPD,而后连接起来分类。
-
-# 前边进行代码转换的时候参考matlab的结果和实现，搞起来。争取这周把这个尝试完，如果不好使再吸收别的文章，还有教授可能也会给些新的建议。
+    for rand_num in random_state_list:
+        X_train, X_test, Y_train, Y_test, verify_train, verify_test = generate_standard_train_test_data(feature_X,
+                                                                                                        label_y,
+                                                                                                        instance_name_list,
+                                                                                                        rand_num,
+                                                                                                        test_size)
+        accuracy, y_pred = train_predict(X_train, Y_train, X_test, Y_test, show_report=True)
+        print(f'Accuracy:{accuracy}, rand:{rand_num}')
+        accuracy_list.append(accuracy)
+        show_confusion_matrix_colorful(Y_test, y_pred, dataset) if len(random_state_list) == 1 else None
+    # step 3 打印结果
+    print_mean_std(accuracy_list)

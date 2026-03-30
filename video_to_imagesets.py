@@ -18,10 +18,8 @@ def transfer_video_to_image_sets(source_dir, output_dir_base):
 
 
 if __name__ == "__main__":
-    '''directory = '/Users/baizhonghai/TP/HandGestureRecognition/datasets/Northwestern_Hand_Gesture/'
-    out_directory_base = '/Users/baizhonghai/TP/HandGestureRecognition/datasets/Northwestern_Hand_Gesture_IMG'''
 
-    directory = '/Users/baizhonghai/TP/HandGestureRecognition/datasets/HandGesture/'
-    out_directory_base = '/Users/baizhonghai/TP/HandGestureRecognition/datasets/HandGesture_IMG/'
+    directory = '/Users/xxx/TP/HandGestureRecognition/datasets/HandGesture/'
+    out_directory_base = '/Users/xxx/TP/HandGestureRecognition/datasets/HandGesture_IMG/'
 
     transfer_video_to_image_sets(directory, out_directory_base)
